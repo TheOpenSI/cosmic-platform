@@ -1,7 +1,7 @@
 <h1 align="center">Directory Hierarchy</h1>
 
 ```md
-CoSMIC_UI/
+cosmic-platform/
 ├── docker/                     # Containerization resources and orchestration files
 │   └── dockerfiles/            # Dockerfile for each service defined in Docker Compose file
 ├── public/                     # Static assets served directly by Vite
@@ -44,7 +44,7 @@ Before setting up, ensure you have the appropriate tools installed depending on 
 
 > [!NOTE]
 > The rest of this guide covers **Purpose 1**. For **Purpose 2**, refer to the
-> setup instructions in [CoSMIC_Docker repository](https://github.com/TheOpenSI/CoSMIC_Docker)
+> setup instructions in [cosmic-docker repository](https://github.com/TheOpenSI/cosmic-docker)
 
 1. **Module-only**: you are working on this part of the project in isolation (e.g., only CoSMIC FE).
 2. **Full-stack**: you need an end-to-end test run across all services (Front-end &rarr; Back-end &rarr; CoSMIC).
@@ -62,24 +62,24 @@ Then, start by cloning the repository using your preferred method:
 
 ```bash
 # Linux/MacOS
-git clone https://github.com/TheOpenSI/CoSMIC_UI.git    # Using HTTPS (recommended for most users)
-git clone git@github.com:TheOpenSI/CoSMIC_UI.git        # Using SSH (recommended if you've SSH keys configured)
+git clone https://github.com/TheOpenSI/cosmic-platform.git    # Using HTTPS (recommended for most users)
+git clone git@github.com:TheOpenSI/cosmic-platform.git        # Using SSH (recommended if you've SSH keys configured)
 ```
 ```ps1
 # Windows
-git clone https://github.com/TheOpenSI/CoSMIC_UI.git    # Using HTTPS (recommended for most users)
-git clone git@github.com:TheOpenSI/CoSMIC_UI.git        # Using SSH (recommended if you've SSH keys configured)
+git clone https://github.com/TheOpenSI/cosmic-platform.git    # Using HTTPS (recommended for most users)
+git clone git@github.com:TheOpenSI/cosmic-platform.git        # Using SSH (recommended if you've SSH keys configured)
 ```
 
 Once cloned, navigate to the project root directory:
 
 ```bash
 # Linux/MacOS
-cd CoSMIC_UI/
+cd cosmic-platform/
 ```
 ```ps1
 # Windows
-Set-Location CoSMIC_UI\
+Set-Location cosmic-platform\
 ```
 
 ---
@@ -102,13 +102,13 @@ Then, edit `.env` and set the URLs to match your running backend microservices. 
 
 ```bash
 # Linux/MacOS
-VITE_API_BASE_URL="http://localhost:3000"     # For CoSMIC
-VITE_API_DATABASE_URL="http://localhost:8000" # For COSMIC-DB
+VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
+VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
 ```
 ```ps1
 # Windows
-VITE_API_BASE_URL="http://localhost:3000"     # For CoSMIC
-VITE_API_DATABASE_URL="http://localhost:8000" # For COSMIC-DB
+VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
+VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
 ```
 
 ## Native Configuration
@@ -133,13 +133,13 @@ Then, edit `.env` and set the URLs to match your running backend services. For e
 
 ```bash
 # Linux/MacOS
-VITE_API_BASE_URL="http://localhost:3000"     # For CoSMIC
-VITE_API_DATABASE_URL="http://localhost:8000" # For COSMIC-DB
+VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
+VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
 ```
 ```ps1
 # Windows
-VITE_API_BASE_URL="http://localhost:3000"     # For CoSMIC
-VITE_API_DATABASE_URL="http://localhost:8000" # For COSMIC-DB
+VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
+VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
 ```
 
 ### **Option 2: Set environment variables directly in your shell**
@@ -148,13 +148,13 @@ Alternatively, export variables directly before running the application:
 
 ```bash
 # Linux/MacOS
-export VITE_API_BASE_URL="http://localhost:3000"     # For CoSMIC
-export VITE_API_DATABASE_URL="http://localhost:8000" # For COSMIC-DB
+export VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
+export VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
 ```
 ```ps1
 # Windows
-$env:VITE_API_BASE_URL="http://localhost:3000"     # For CoSMIC
-$env:VITE_API_DATABASE_URL="http://localhost:8000" # For COSMIC-DB
+$env:VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
+$env:VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
 ```
 
 ---
@@ -162,7 +162,7 @@ $env:VITE_API_DATABASE_URL="http://localhost:8000" # For COSMIC-DB
 
 > [!IMPORTANT]
 > Our frontend has environment variables that specify the connection to both of
-> the backend microservices ([COSMIC-DB](https://github.com/TheOpenSI/COSMIC-DB/tree/dev) & [CoSMIC](https://github.com/TheOpenSI/CoSMIC/tree/Development)).
+> the backend microservices ([cosmic-db](https://github.com/TheOpenSI/cosmic-db/tree/dev) & [cosmic-core](https://github.com/TheOpenSI/cosmic-core/tree/Development)).
 > Understanding this structure will help you prepare the environment correctly.
 
 > [!TIP]
