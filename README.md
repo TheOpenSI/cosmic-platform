@@ -102,13 +102,15 @@ Then, edit `.env` and set the URLs to match your running backend microservices. 
 
 ```bash
 # Linux/MacOS
-VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
-VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
+VITE_API_BASE_URL="http://localhost:3000"       # For cosmic-core
+VITE_API_DATABASE_URL="http://localhost:8000"   # For cosmic-db
+VITE_BFF_URL="http://localhost:8081"            # For cosmic-auth
 ```
 ```ps1
 # Windows
-VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
-VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
+VITE_API_BASE_URL="http://localhost:3000"       # For cosmic-core
+VITE_API_DATABASE_URL="http://localhost:8000"   # For cosmic-db
+VITE_BFF_URL="http://localhost:8081"            # For cosmic-auth
 ```
 
 ## Native Configuration
@@ -133,13 +135,15 @@ Then, edit `.env` and set the URLs to match your running backend services. For e
 
 ```bash
 # Linux/MacOS
-VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
-VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
+VITE_API_BASE_URL="http://localhost:3000"       # For cosmic-core
+VITE_API_DATABASE_URL="http://localhost:8000"   # For cosmic-db
+VITE_BFF_URL="http://localhost:8081"            # For cosmic-auth
 ```
 ```ps1
 # Windows
-VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
-VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
+VITE_API_BASE_URL="http://localhost:3000"       # For cosmic-core
+VITE_API_DATABASE_URL="http://localhost:8000"   # For cosmic-db
+VITE_BFF_URL="http://localhost:8081"            # For cosmic-auth
 ```
 
 ### **Option 2: Set environment variables directly in your shell**
@@ -148,13 +152,15 @@ Alternatively, export variables directly before running the application:
 
 ```bash
 # Linux/MacOS
-export VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
-export VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
+export VITE_API_BASE_URL="http://localhost:3000"        # For cosmic-core
+export VITE_API_DATABASE_URL="http://localhost:8000"    # For cosmic-db
+export VITE_BFF_URL="http://localhost:8081"             # For cosmic-auth
 ```
 ```ps1
 # Windows
-$env:VITE_API_BASE_URL="http://localhost:3000"     # For cosmic-core
-$env:VITE_API_DATABASE_URL="http://localhost:8000" # For cosmic-db
+$env:VITE_API_BASE_URL="http://localhost:3000"          # For cosmic-core
+$env:VITE_API_DATABASE_URL="http://localhost:8000"      # For cosmic-db
+$env:VITE_BFF_URL="http://localhost:8081"               # For cosmic-auth
 ```
 
 ---
