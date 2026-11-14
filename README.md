@@ -91,7 +91,7 @@ Create a `.env` file in the project root directory by copying the example file:
 
 ```bash
 # Linux/MacOS
-cp ./env_example ./env
+cp ./.env_example ./env
 ```
 ```ps1
 # Windows
@@ -124,7 +124,7 @@ VITE_BFF_URL="http://localhost:8081"            # For cosmic-auth
 
 ```bash
 # Linux/MacOS
-cp ./env_example ./env
+cp ./.env_example ./env
 ```
 ```ps1
 # Windows
@@ -254,3 +254,8 @@ yarn dev
 You can now verify the frontend is running correctly:
 
 1. **React**: [localhost:5173](http://localhost:5173)
+
+---
+# Conventions
+
+This repository follows the shared [EditorConfig conventions](docs/conventions/EDITORCONFIG.md). See the [live documentation](https://github.com/TheOpenSI/cosmic-docs/blob/main/docs/06-development/editorconfig.md) for the rules and editor setup.
