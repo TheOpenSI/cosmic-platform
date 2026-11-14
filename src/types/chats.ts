@@ -4,8 +4,8 @@ export const LLM_ROLE = "assistant" as const;
 
 
 /**
- * UI view models
- */
+	* UI view models
+	*/
 
 
 // A message as rendered in the chat transcript
@@ -19,8 +19,8 @@ export type ChatMessage = {
 
 
 /**
- * Chatboxes API / CoSMIC payload models
- */
+	* Chatboxes API / CoSMIC payload models
+	*/
 
 
 // A complete chat history (user-only & assistant-only fields) as stored by the DB

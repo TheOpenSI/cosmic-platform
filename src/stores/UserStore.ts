@@ -13,9 +13,9 @@ import { hasAdminAccess } from "../lib/authorisation";
 
 
 /**
- * Build the minimum user shape required by the chat/dashboard views when the
- * full Users list is intentionally not fetched (regular `user` role).
- */
+	* Build the minimum user shape required by the chat/dashboard views when the
+	* full Users list is intentionally not fetched (regular `user` role).
+	*/
 function userFromAuth(me: AuthUser): User | null {
 	if (!me.user_id) return null;
 

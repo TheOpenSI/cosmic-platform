@@ -8,17 +8,17 @@ export type AuthUser = {
 	email?: string;
 	name?: string;
 	/**
-	 * Keycloak realm roles (e.g. `admin`, `user`).
-	 */
+			* Keycloak realm roles (e.g. `admin`, `user`).
+			*/
 	roles: string[];
 	provider?: string;
 };
 
 
 /**
- * BFF → Keycloak. Keycloak brokers Google & Microsoft, so the platform only
- * ever needs this single login URL.
- */
+	* BFF → Keycloak. Keycloak brokers Google & Microsoft, so the platform only
+	* ever needs this single login URL.
+	*/
 export function getLoginUrl(): string {
 	return `${BFF_BASE_URL}${AUTH_API_PREFIX}/login`;
 }

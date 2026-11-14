@@ -35,56 +35,56 @@ dayjs.extend(relativeTime);
 
 
 export default function ChatHistoryPanel() {
-  	const collapseChatPanel 	= useSidebarStore((state) => state.collapseChatPanel);
-  	const goNone 				= useSidebarStore((state) => state.goNone);
-  	const { chatSessionId } 	= useParams();
-  	const navigate 				= useNavigate();
-  	const queryClient 			= useQueryClient();
-  	const { selectedUser } 		= useUserStore();
-  	const resetChat 			= useChatStore((state) => state.resetChat);
+			const collapseChatPanel 	= useSidebarStore((state) => state.collapseChatPanel);
+			const goNone 				= useSidebarStore((state) => state.goNone);
+			const { chatSessionId } 	= useParams();
+			const navigate 				= useNavigate();
+			const queryClient 			= useQueryClient();
+			const { selectedUser } 		= useUserStore();
+			const resetChat 			= useChatStore((state) => state.resetChat);
 
-  	const { data: allChats } = useQuery({
-    	queryKey: ["allUsersAndChatSessions"],
-    	queryFn: getAllChatSession,
-  	});
+			const { data: allChats } = useQuery({
+				queryKey: ["allUsersAndChatSessions"],
+				queryFn: getAllChatSession,
+			});
 
-  	const sortedChats = (allChats?.result ?? [])
-    	.filter((chat) => chat.user_id === selectedUser?.id)
-    	.sort((a, b) => dayjs(b.create_on).unix() - dayjs(a.create_on).unix());
+			const sortedChats = (allChats?.result ?? [])
+				.filter((chat) => chat.user_id === selectedUser?.id)
+				.sort((a, b) => dayjs(b.create_on).unix() - dayjs(a.create_on).unix());
 
 	const { mutate: handleDeleteChat } = useMutation({
-  		mutationFn: async (chatSessionId: string) => {
-    		if (!selectedUser?.id) return;
+					mutationFn: async (chatSessionId: string) => {
+						if (!selectedUser?.id) return;
 
-    		try {
-      			await deleteNotifyChatSession(
-      				chatSessionId,
-      				selectedUser.id
-      			)
+						try {
+									await deleteNotifyChatSession(
+											chatSessionId,
+											selectedUser.id
+									)
 
-      		} catch (err) {
-      			console.error("Failed to log chat session before delete!", err);
-    		}
+							} catch (err) {
+									console.error("Failed to log chat session before delete!", err);
+						}
 
-    		await deleteChatSession(chatSessionId);
-  		},
-  		onSuccess: () => {
-    		queryClient.invalidateQueries({ queryKey: ["allUsersAndChatSessions"] });
-  		},
-  		onError: (error) => {
-    		message.error(error.message);
-  		},
+						await deleteChatSession(chatSessionId);
+					},
+					onSuccess: () => {
+						queryClient.invalidateQueries({ queryKey: ["allUsersAndChatSessions"] });
+					},
+					onError: (error) => {
+						message.error(error.message);
+					},
 	});
 
-  	const handleNewChat = () => {
-    	// Clear the transient "new" bucket so the screen resets even when we are already on /chat 
-    	resetChat("new");
-    	navigate(
-    		"/chat",
-    		{ replace: true },
-    	);
-    	goNone();
-  	};
+			const handleNewChat = () => {
+				// Clear the transient "new" bucket so the screen resets even when we are already on /chat
+				resetChat("new");
+				navigate(
+						"/chat",
+						{ replace: true },
+				);
+				goNone();
+			};
 	return (
 		<div className="w-full h-full bg-[#F0F5F9] p-3 flex flex-col gap-3">
 			<div className="flex items-center gap-2">

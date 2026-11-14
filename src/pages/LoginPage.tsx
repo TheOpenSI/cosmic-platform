@@ -20,13 +20,13 @@ import { getLoginUrl } from "../api/auth";
 
 
 /**
- * A request to `/login` hands the browser straight to Keycloak, which shows the
- * typical username/password form + Google & Microsoft icons.
- *
- * If the callback came back with an `error`, we show a minimal retry card
- * instead of redirecting again. This way, a failing IdP cannot trap the user in
- * a redirect loop.
- */
+	* A request to `/login` hands the browser straight to Keycloak, which shows the
+	* typical username/password form + Google & Microsoft icons.
+	*
+	* If the callback came back with an `error`, we show a minimal retry card
+	* instead of redirecting again. This way, a failing IdP cannot trap the user in
+	* a redirect loop.
+	*/
 export default function LoginPage() {
 	const { Text } = Typography;
 	const navigate = useNavigate();

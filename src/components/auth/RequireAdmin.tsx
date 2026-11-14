@@ -14,9 +14,9 @@ import { hasAdminAccess } from "../../lib/authorisation";
 
 
 /**
- * Guards the admin-only sections within Settings page. `RequireAuth` has already
- * resolved the session, so the role is available synchronously here
- */
+	* Guards the admin-only sections within Settings page. `RequireAuth` has already
+	* resolved the session, so the role is available synchronously here
+	*/
 export default function RequireAdmin() {
 	const user = useAuthStore((state) => state.user);
 

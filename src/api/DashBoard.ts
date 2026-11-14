@@ -4,12 +4,12 @@
 /// --- Type hints --- ///
 import { useUserStore } from "../stores/UserStore";
 import type {
-  AllEmissionsResponse,
-  MonthlyEmissionsStatsResponse,
-  UserEmissionsSummaryResponse,
-  UserEmissionsRollingResponse,
-  UserTokensResponse,
-  UserTokensRollingResponse,
+	AllEmissionsResponse,
+	MonthlyEmissionsStatsResponse,
+	UserEmissionsSummaryResponse,
+	UserEmissionsRollingResponse,
+	UserTokensResponse,
+	UserTokensRollingResponse,
 } from "../types/DashBoard";
 
 
@@ -19,148 +19,148 @@ import { fetchWithAuth } from "./fetchWithAuth";
 
 
 /**
- * Fetch ALL CodeCarbon emissions records (no filter applied).
- */
+	* Fetch ALL CodeCarbon emissions records (no filter applied).
+	*/
 export async function getAllEmissions(): Promise<AllEmissionsResponse> {
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions`,
-  );
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions`,
+	);
 }
 
 /**
- * Fetch all emissions records belonging to a specific user_id.
- * Uses the `?user_id=` selected user id from useuserstore query param on the same GET / endpoint.
- * (filtered server-side via EmissionsFilterParams).
- */
+	* Fetch all emissions records belonging to a specific user_id.
+	* Uses the `?user_id=` selected user id from useuserstore query param on the same GET / endpoint.
+	* (filtered server-side via EmissionsFilterParams).
+	*/
 export async function getUserEmissions(): Promise<AllEmissionsResponse> {
-  const selectedUser = useUserStore.getState().selectedUser;
- 
-  if (!selectedUser) {
-    // No user selected yet — return an empty, well-shaped response instead
-    // of throwing, so the Dashboard can render a clean "no data" state.
-    return {
-      success: false,
-      count: 0,
-      result: [],
-    };
-  }
- 
-  const params = new URLSearchParams({ user_id: selectedUser.id });
- 
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions?${params.toString()}`,
-  );
+	const selectedUser = useUserStore.getState().selectedUser;
+
+	if (!selectedUser) {
+		// No user selected yet — return an empty, well-shaped response instead
+		// of throwing, so the Dashboard can render a clean "no data" state.
+		return {
+			success: false,
+			count: 0,
+			result: [],
+		};
+	}
+
+	const params = new URLSearchParams({ user_id: selectedUser.id });
+
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions?${params.toString()}`,
+	);
 }
 
 /**
- * Fetch aggregated lifetime totals for the selected user (stat cards).
- */
+	* Fetch aggregated lifetime totals for the selected user (stat cards).
+	*/
 export async function getUserEmissionsSummary(): Promise<UserEmissionsSummaryResponse> {
-  const selectedUser = useUserStore.getState().selectedUser;
+	const selectedUser = useUserStore.getState().selectedUser;
 
-  if (!selectedUser) {
-    return {
-      success: false,
-      user_id: "",
-      total_emissions: 0,
-      total_cpu_power: 0,
-      total_gpu_power: 0,
-    };
-  }
+	if (!selectedUser) {
+		return {
+			success: false,
+			user_id: "",
+			total_emissions: 0,
+			total_cpu_power: 0,
+			total_gpu_power: 0,
+		};
+	}
 
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions/stats/${selectedUser.id}/summary`,
-  );
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions/stats/${selectedUser.id}/summary`,
+	);
 }
 
 export async function getUserTokens(): Promise<UserTokensResponse> {
-  const selectedUser = useUserStore.getState().selectedUser;
+	const selectedUser = useUserStore.getState().selectedUser;
 
-  if (!selectedUser) {
-    return {
-      success: false,
-        result: {
-          user_input_token: 0,
-          user_output_token: 0,
-        },
-    };
-  }
+	if (!selectedUser) {
+		return {
+			success: false,
+				result: {
+					user_input_token: 0,
+					user_output_token: 0,
+				},
+		};
+	}
 
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_DATABASE_URL}/api/v1/tokens/user/${selectedUser.id}`,
-  );
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/tokens/user/${selectedUser.id}`,
+	);
 }
 
 /**
- * Fetch aggregated rolling monthly emissions for the selected user (line chart).
- */
+	* Fetch aggregated rolling monthly emissions for the selected user (line chart).
+	*/
 export async function getUserRollingStats(
-  months: 3 | 6 | 12,
+	months: 3 | 6 | 12,
 ): Promise<UserEmissionsRollingResponse> {
-  const selectedUser = useUserStore.getState().selectedUser;
+	const selectedUser = useUserStore.getState().selectedUser;
 
-  if (!selectedUser) {
-    return {
-      success: false,
-      user_id: "",
-      months,
-      labels: [],
-      totals: [],
-    };
-  }
+	if (!selectedUser) {
+		return {
+			success: false,
+			user_id: "",
+			months,
+			labels: [],
+			totals: [],
+		};
+	}
 
-  const params = new URLSearchParams({
-    months: String(months),
-  });
+	const params = new URLSearchParams({
+		months: String(months),
+	});
 
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions/stats/${selectedUser.id}/rolling?${params.toString()}`,
-  );
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions/stats/${selectedUser.id}/rolling?${params.toString()}`,
+	);
 }
 
 export async function getUserTokenRollingStats(
-  months: 3 | 6 | 12,
+	months: 3 | 6 | 12,
 ): Promise<UserTokensRollingResponse> {
-  const selectedUser = useUserStore.getState().selectedUser;
+	const selectedUser = useUserStore.getState().selectedUser;
 
-  if (!selectedUser) {
-    return {
-      success: false,
-      user_id: "",
-      months,
-      labels: [],
-      input_totals: [],
-      output_totals: [],
-    };
-  }
+	if (!selectedUser) {
+		return {
+			success: false,
+			user_id: "",
+			months,
+			labels: [],
+			input_totals: [],
+			output_totals: [],
+		};
+	}
 
-  const params = new URLSearchParams({ months: String(months) });
+	const params = new URLSearchParams({ months: String(months) });
 
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_DATABASE_URL}/api/v1/tokens/user/${selectedUser.id}/rolling?${params.toString()}`,
-  );
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/tokens/user/${selectedUser.id}/rolling?${params.toString()}`,
+	);
 }
 
 /**
- * Fetch aggregated monthly emissions totals for the current year (all users).
- * Used by the global CoSMIC bar chart on the dashboard.
- */
+	* Fetch aggregated monthly emissions totals for the current year (all users).
+	* Used by the global CoSMIC bar chart on the dashboard.
+	*/
 export async function getMonthlyEmissionsStats(): Promise<MonthlyEmissionsStatsResponse> {
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions/stats`,
-  );
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions/stats`,
+	);
 }
 
 /**
- * Fetch a single emission record by its emission_id.
- * Uses the `?emission_id=` query param on the same GET / endpoint.
- */
+	* Fetch a single emission record by its emission_id.
+	* Uses the `?emission_id=` query param on the same GET / endpoint.
+	*/
 export async function getEmissionById(
-  emission_id: string,
+	emission_id: string,
 ): Promise<AllEmissionsResponse> {
-  const params = new URLSearchParams({ emission_id });
+	const params = new URLSearchParams({ emission_id });
 
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions?${params.toString()}`,
-  );
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions?${params.toString()}`,
+	);
 }
