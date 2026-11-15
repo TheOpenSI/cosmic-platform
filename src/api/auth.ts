@@ -7,18 +7,22 @@ export type AuthUser = {
 	sub: string;
 	email?: string;
 	name?: string;
+	// editorconfig-checker-disable
 	/**
-			* Keycloak realm roles (e.g. `admin`, `user`).
-			*/
+	 * Keycloak realm roles (e.g. `admin`, `user`).
+	 */
+	// editorconfig-checker-enable
 	roles: string[];
 	provider?: string;
 };
 
 
+// editorconfig-checker-disable
 /**
-	* BFF → Keycloak. Keycloak brokers Google & Microsoft, so the platform only
-	* ever needs this single login URL.
-	*/
+ * BFF → Keycloak. Keycloak brokers Google & Microsoft, so the platform only
+ * ever needs this single login URL.
+ */
+// editorconfig-checker-enable
 export function getLoginUrl(): string {
 	return `${BFF_BASE_URL}${AUTH_API_PREFIX}/login`;
 }

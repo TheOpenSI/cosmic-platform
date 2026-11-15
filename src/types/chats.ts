@@ -3,9 +3,11 @@ export const USER_ROLE = "user" as const;
 export const LLM_ROLE = "assistant" as const;
 
 
+// editorconfig-checker-disable
 /**
-	* UI view models
-	*/
+ * UI view models
+ */
+// editorconfig-checker-enable
 
 
 // A message as rendered in the chat transcript
@@ -18,9 +20,11 @@ export type ChatMessage = {
 };
 
 
+// editorconfig-checker-disable
 /**
-	* Chatboxes API / CoSMIC payload models
-	*/
+ * Chatboxes API / CoSMIC payload models
+ */
+// editorconfig-checker-enable
 
 
 // A complete chat history (user-only & assistant-only fields) as stored by the DB

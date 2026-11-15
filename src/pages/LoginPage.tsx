@@ -19,14 +19,16 @@ import {
 import { getLoginUrl } from "../api/auth";
 
 
+// editorconfig-checker-disable
 /**
-	* A request to `/login` hands the browser straight to Keycloak, which shows the
-	* typical username/password form + Google & Microsoft icons.
-	*
-	* If the callback came back with an `error`, we show a minimal retry card
-	* instead of redirecting again. This way, a failing IdP cannot trap the user in
-	* a redirect loop.
-	*/
+ * A request to `/login` hands the browser straight to Keycloak, which shows the
+ * typical username/password form + Google & Microsoft icons.
+ *
+ * If the callback came back with an `error`, we show a minimal retry card
+ * instead of redirecting again. This way, a failing IdP cannot trap the user in
+ * a redirect loop.
+ */
+// editorconfig-checker-enable
 export default function LoginPage() {
 	const { Text } = Typography;
 	const navigate = useNavigate();

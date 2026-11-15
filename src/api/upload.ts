@@ -1,13 +1,15 @@
 /// --- Internal libraries --- ///
 
 
+// editorconfig-checker-disable
 /**
-	* Upload a file to CoSMIC memory.
-	*
-	* The backend stores the file under the given memory tier and embeds it into
-	* the vector database tagged with `user_id` / `chat_session_id`, so the chat
-	* (which sends the same ids) can retrieve it for this session.
-	*/
+ * Upload a file to CoSMIC memory.
+ *
+ * The backend stores the file under the given memory tier and embeds it into
+ * the vector database tagged with `user_id` / `chat_session_id`, so the chat
+ * (which sends the same ids) can retrieve it for this session.
+ */
+// editorconfig-checker-enable
 export async function uploadFile(
 	file: File,
 	userId: string,

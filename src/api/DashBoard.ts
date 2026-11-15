@@ -17,21 +17,24 @@ import type {
 import { fetchWithAuth } from "./fetchWithAuth";
 
 
-
+// editorconfig-checker-disable
 /**
-	* Fetch ALL CodeCarbon emissions records (no filter applied).
-	*/
+ * Fetch ALL CodeCarbon emissions records (no filter applied).
+ */
+// editorconfig-checker-enable
 export async function getAllEmissions(): Promise<AllEmissionsResponse> {
 	return fetchWithAuth(
 		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions`,
 	);
 }
 
+// editorconfig-checker-disable
 /**
-	* Fetch all emissions records belonging to a specific user_id.
-	* Uses the `?user_id=` selected user id from useuserstore query param on the same GET / endpoint.
-	* (filtered server-side via EmissionsFilterParams).
-	*/
+ * Fetch all emissions records belonging to a specific user_id.
+ * Uses the `?user_id=` selected user id from useuserstore query param on the same GET / endpoint.
+ * (filtered server-side via EmissionsFilterParams).
+ */
+// editorconfig-checker-enable
 export async function getUserEmissions(): Promise<AllEmissionsResponse> {
 	const selectedUser = useUserStore.getState().selectedUser;
 
@@ -52,9 +55,11 @@ export async function getUserEmissions(): Promise<AllEmissionsResponse> {
 	);
 }
 
+// editorconfig-checker-disable
 /**
-	* Fetch aggregated lifetime totals for the selected user (stat cards).
-	*/
+ * Fetch aggregated lifetime totals for the selected user (stat cards).
+ */
+// editorconfig-checker-enable
 export async function getUserEmissionsSummary(): Promise<UserEmissionsSummaryResponse> {
 	const selectedUser = useUserStore.getState().selectedUser;
 
@@ -91,9 +96,11 @@ export async function getUserTokens(): Promise<UserTokensResponse> {
 	);
 }
 
+// editorconfig-checker-disable
 /**
-	* Fetch aggregated rolling monthly emissions for the selected user (line chart).
-	*/
+ * Fetch aggregated rolling monthly emissions for the selected user (line chart).
+ */
+// editorconfig-checker-enable
 export async function getUserRollingStats(
 	months: 3 | 6 | 12,
 ): Promise<UserEmissionsRollingResponse> {
@@ -141,20 +148,24 @@ export async function getUserTokenRollingStats(
 	);
 }
 
+// editorconfig-checker-disable
 /**
-	* Fetch aggregated monthly emissions totals for the current year (all users).
-	* Used by the global CoSMIC bar chart on the dashboard.
-	*/
+ * Fetch aggregated monthly emissions totals for the current year (all users).
+ * Used by the global CoSMIC bar chart on the dashboard.
+ */
+// editorconfig-checker-enable
 export async function getMonthlyEmissionsStats(): Promise<MonthlyEmissionsStatsResponse> {
 	return fetchWithAuth(
 		`${import.meta.env.VITE_API_DATABASE_URL}/api/v1/emissions/stats`,
 	);
 }
 
+// editorconfig-checker-disable
 /**
-	* Fetch a single emission record by its emission_id.
-	* Uses the `?emission_id=` query param on the same GET / endpoint.
-	*/
+ * Fetch a single emission record by its emission_id.
+ * Uses the `?emission_id=` query param on the same GET / endpoint.
+ */
+// editorconfig-checker-enable
 export async function getEmissionById(
 	emission_id: string,
 ): Promise<AllEmissionsResponse> {

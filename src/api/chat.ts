@@ -16,13 +16,15 @@ import { useUserStore } from "../stores/UserStore";
 import { fetchWithAuth } from "./fetchWithAuth";
 
 
+// editorconfig-checker-disable
 /**
-	* Send the partial chat session payload to CoSMIC.
-	*
-	* CoSMIC owns session creation, so a brand new chat passes omitted chat session
-	* ID for any attachment has already been uploaded (see `api/upload.ts`) before
-	* this call.
-	*/
+ * Send the partial chat session payload to CoSMIC.
+ *
+ * CoSMIC owns session creation, so a brand new chat passes omitted chat session
+ * ID for any attachment has already been uploaded (see `api/upload.ts`) before
+ * this call.
+ */
+// editorconfig-checker-enable
 export async function sendMessage(
 	chatSessionId:	string | null,
 	title:			string,
@@ -60,16 +62,17 @@ export async function getAllChatSession(): Promise<ChatSessionAllResponse> {
 }
 
 
+// editorconfig-checker-disable
 /**
-	* TODO:
-	* This's not a good approach at all. We've created a ticket to address this
-	* method.
-	*
-	* Pre-create an empty chatbox so an attachment can be uploaded against a
-	* session id before the first message is sent. An empty `details` list is
-	* valid on the Chatboxes API.
-	*
-	*/
+ * TODO:
+ * This's not a good approach at all. We've created a ticket to address this
+ * method.
+ *
+ * Pre-create an empty chatbox so an attachment can be uploaded against a
+ * session id before the first message is sent. An empty `details` list is
+ * valid on the Chatboxes API.
+ */
+// editorconfig-checker-enable
 export async function createChatSession(
 		title:	string,
 		userId: string,
