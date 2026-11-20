@@ -1,20 +1,20 @@
 import type {
-  OllamaModelsResponse,
-  OllamaModelPullStatusResponse,
+	OllamaModelsResponse,
+	OllamaModelPullStatusResponse,
 } from "../types/models";
 import { fetchWithAuth } from "./fetchWithAuth";
 
 export async function getOllamaModels(): Promise<OllamaModelsResponse> {
-  return fetchWithAuth(`${import.meta.env.VITE_API_BASE_URL}/api/v1/models`);
+	return fetchWithAuth(`${import.meta.env.VITE_API_BASE_URL}/api/v1/models`);
 }
 
 export async function deleteOneModel(model: string) {
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_BASE_URL}/api/v1/models/${model}`,
-    {
-      method: "DELETE",
-    },
-  );
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_BASE_URL}/api/v1/models/${model}`,
+		{
+			method: "DELETE",
+		},
+	);
 }
 
 // export async function pullOllamaModels(model: string) {
@@ -31,21 +31,21 @@ export async function deleteOneModel(model: string) {
 // }
 
 export async function pullOllamaModel(modelName: string) {
-  const response = await fetchWithAuth(
-    `${import.meta.env.VITE_API_BASE_URL}/api/v1/models/pull`,
-    {
-      method: "POST",
-      body: JSON.stringify({ model: modelName }),
-    },
-  );
-  localStorage.setItem("activeDownloadJob", response.job_id);
-  return response.job_id;
+	const response = await fetchWithAuth(
+		`${import.meta.env.VITE_API_BASE_URL}/api/v1/models/pull`,
+		{
+			method: "POST",
+			body: JSON.stringify({ model: modelName }),
+		},
+	);
+	localStorage.setItem("activeDownloadJob", response.job_id);
+	return response.job_id;
 }
 
 export async function getPullStatus(
-  jobId: string,
+	jobId: string,
 ): Promise<OllamaModelPullStatusResponse> {
-  return fetchWithAuth(
-    `${import.meta.env.VITE_API_BASE_URL}/api/v1/models/pull/${jobId}`,
-  );
+	return fetchWithAuth(
+		`${import.meta.env.VITE_API_BASE_URL}/api/v1/models/pull/${jobId}`,
+	);
 }

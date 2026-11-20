@@ -174,7 +174,7 @@ export default function DashboardPage() {
 					setUserTokens(tokensRes);
 					setUserRolling(rollingRes);
 					setUserTokenRolling(tokenRollingRes);
-					
+
 				} finally {
 					setLoading(false);
 				}
@@ -338,11 +338,11 @@ export default function DashboardPage() {
 
 	const tokenLineChartOptions = useMemo(
 		() => ({
-		  responsive: true,
-		  animation: {
-			  duration: 400
-		  },
-		  plugins: {
+					responsive: true,
+					animation: {
+							duration: 400
+					},
+					plugins: {
 			legend: {
 				position: "top" as const
 			},
@@ -351,21 +351,21 @@ export default function DashboardPage() {
 				text: "Your Token Usage"
 			},
 			tooltip: {
-			  callbacks: {
+							callbacks: {
 				label: (context: any) => {
-				  const value = context.raw;
-				  return value === null ? "No data" : `${value} tokens`;
+									const value = context.raw;
+									return value === null ? "No data" : `${value} tokens`;
 				},
-			  },
+							},
 			},
-		  },
-		  scales: {
+					},
+					scales: {
 			y: {
-			  beginAtZero: true,
-			  title: { display: true, text: "tokens" },
-			  ticks: { precision: 0 },
+							beginAtZero: true,
+							title: { display: true, text: "tokens" },
+							ticks: { precision: 0 },
 			},
-		  },
+					},
 		}),
 		[],
 	);

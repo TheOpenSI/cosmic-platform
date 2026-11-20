@@ -1,6 +1,7 @@
 /// --- Internal libraries --- ///
 
 
+// editorconfig-checker-disable
 /**
  * Upload a file to CoSMIC memory.
  *
@@ -8,41 +9,42 @@
  * the vector database tagged with `user_id` / `chat_session_id`, so the chat
  * (which sends the same ids) can retrieve it for this session.
  */
+// editorconfig-checker-enable
 export async function uploadFile(
-  file: File,
-  userId: string,
-  chatSessionId: string,
-  memoryType: string = "session",
-  signal?: AbortSignal
+	file: File,
+	userId: string,
+	chatSessionId: string,
+	memoryType: string = "session",
+	signal?: AbortSignal
 ) {
-  const formData = new FormData();
-  formData.append("file", file);
+	const formData = new FormData();
+	formData.append("file", file);
 
-  const params = new URLSearchParams({
-    user_id: userId,
-    chat_session_id: chatSessionId,
-    memory_type: memoryType,
-  });
+	const params = new URLSearchParams({
+		user_id: userId,
+		chat_session_id: chatSessionId,
+		memory_type: memoryType,
+	});
 
-  const response = await fetch(
-    `${import.meta.env.VITE_API_BASE_URL}/api/v1/memory/upload?${params.toString()}`,
-    {
-      method: "POST",
-      body: formData,
-      signal,
-    },
-  );
+	const response = await fetch(
+		`${import.meta.env.VITE_API_BASE_URL}/api/v1/memory/upload?${params.toString()}`,
+		{
+			method: "POST",
+			body: formData,
+			signal,
+		},
+	);
 
-  if (!response.ok) {
-    let detail = "Upload failed";
-    try {
-      const error = await response.json();
-      detail = error.detail || error.message || detail;
-    } catch {
-      detail = `HTTP ${response.status}: ${response.statusText}`;
-    }
-    throw new Error(detail);
-  }
+	if (!response.ok) {
+		let detail = "Upload failed";
+		try {
+			const error = await response.json();
+			detail = error.detail || error.message || detail;
+		} catch {
+			detail = `HTTP ${response.status}: ${response.statusText}`;
+		}
+		throw new Error(detail);
+	}
 
-  return await response.json();
+	return await response.json();
 }
